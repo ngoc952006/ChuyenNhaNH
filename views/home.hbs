@@ -1,0 +1,126 @@
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="pill">🚚 Dịch vụ chuyển nhà nhanh chóng và an toàn</span>
+
+            <h1>Chuyển nhà dễ dàng<br>Cùng <em>ChuyểnNhàNH</em></h1>
+
+            <p>Giải pháp chuyển nhà chuyên nghiệp, nhanh chóng, an toàn với chi phí hợp lý nhất.</p>
+
+            <div class="booking">
+                <div>
+                    📍 <small>Địa chỉ hiện tại</small>
+                    <strong>Nhập địa chỉ của bạn</strong>
+                </div>
+
+                <div>
+                    📅 <small>Ngày chuyển</small>
+                    <strong>Chọn ngày</strong>
+                </div>
+
+                <a class="btn btn-orange" href="/services">Tìm hiểu ngay →</a>
+            </div>
+
+            <div class="ticks">
+                <span>✓ Đội ngũ chuyên nghiệp</span>
+                <span>✓ Xe tải hiện đại</span>
+                <span>✓ Bảo hiểm tài sản</span>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="/images/image.png" alt="Lỗi!!">
+        </div>
+    </div>
+</section>
+
+<section class="benefits">
+    <div class="container benefit-grid">
+        <div>🛡️<b>An toàn tuyệt đối</b><small>Bảo hiểm tài sản</small></div>
+        <div>◷<b>Nhanh chóng</b><small>Đúng tiến độ</small></div>
+        <div>👥<b>Đội ngũ chuyên nghiệp</b><small>Nhân viên kinh nghiệm</small></div>
+        <div>🚛<b>Xe tải hiện đại</b><small>Đa dạng tải trọng</small></div>
+        <div>🪙<b>Giá cả hợp lý</b><small>Minh bạch, không phí ẩn</small></div>
+        <div>☎<b>Hỗ trợ 24/7</b><small>Luôn sẵn sàng</small></div>
+    </div>
+</section>
+
+<section id="process" class="section">
+    <div class="section-head">
+        <span>QUY TRÌNH DỊCH VỤ</span>
+        <h2>Chỉ 4 bước đơn giản</h2>
+        <p>Đăng ký dễ dàng - Chuyển nhà nhanh chóng</p>
+    </div>
+
+    <div class="container steps">
+        <div>
+            <i>1</i>
+            <h3>Đăng ký thông tin</h3>
+            <p>Cung cấp địa chỉ, thời gian và nhu cầu.</p>
+        </div>
+
+        <div>
+            <i>2</i>
+            <h3>Tư vấn & báo giá</h3>
+            <p>Nhận tư vấn chi tiết và báo giá minh bạch.</p>
+        </div>
+
+        <div>
+            <i>3</i>
+            <h3>Tiến hành vận chuyển</h3>
+            <p>Đội ngũ chuyên nghiệp thực hiện an toàn.</p>
+        </div>
+
+        <div>
+            <i>4</i>
+            <h3>Hoàn tất & bàn giao</h3>
+            <p>Kiểm tra và xác nhận đã hoàn thành.</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <div class="container about-grid">
+        <div class="boxes">📦 📦<br>🏠 📦</div>
+
+        <div>
+            <span class="orange">VÌ SAO NÊN CHỌN CHUYỂNNHÀNH</span>
+
+            <h2>Giải pháp chuyển nhà<br>thông minh cho mọi gia đình</h2>
+
+            <p>
+                Chúng tôi không chỉ vận chuyển đồ đạc, mà còn mang đến sự an tâm
+                và thoải mái cho hành trình mới của bạn.
+            </p>
+
+            <ul>
+                <li>✓ Kinh nghiệm nhiều năm trong ngành</li>
+                <li>✓ Hỗ trợ đóng gói, tháo lắp nội thất</li>
+                <li>✓ Phục vụ cả nội thành và liên tỉnh</li>
+                <li>✓ Hợp đồng rõ ràng, minh bạch</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-head">
+        <span>DỊCH VỤ NỔI BẬT</span>
+        <h2>Chọn dịch vụ phù hợp</h2>
+    </div>
+
+    <div class="container cards">
+        {{#each services}}
+            <article class="card">
+                <div class="card-img">📦</div>
+
+                <div class="card-body">
+                    <h3>{{name}}</h3>
+                    <p>{{description}}</p>
+                    <strong>{{currency price}}</strong>
+                    <a href="/services/{{id}}">Xem chi tiết →</a>
+                </div>
+            </article>
+        {{/each}}
+    </div>
+</section>

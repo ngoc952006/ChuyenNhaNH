@@ -1,0 +1,63 @@
+<header class="header">
+    <div class="container nav">
+
+        <a class="brand" href="/">
+            <span class="logo">⌂🚚</span>
+
+            <span>
+                <b>ChuyểnNhà<span>NH</span></b>
+                <small>Nhanh chóng - An toàn - Tiết kiệm</small>
+            </span>
+        </a>
+
+        <nav>
+            <a href="/">Trang chủ</a>
+            <a href="/services">Dịch vụ</a>
+            <a href="/#process">Quy trình</a>
+            <a href="/#about">Về chúng tôi</a>
+            <a href="/#contact">Liên hệ</a>
+        </nav>
+
+        <div class="nav-right">
+
+            <a class="cart-link" href="/cart">
+                🛒 Giỏ hàng ({{cartCount}})
+            </a>
+
+            {{#if user}}
+                <div class="account-menu">
+                    <button type="button" class="account-trigger">
+                        <span class="account-avatar">{{initial user.name}}</span>
+                        <span class="account-name">{{user.name}}</span>
+                        <span class="caret">▾</span>
+                    </button>
+
+                    <div class="account-dropdown">
+                        <div class="account-dropdown-head">
+                            <strong>{{user.name}}</strong>
+                            <small>{{user.email}}</small>
+                        </div>
+
+                        <a href="/orders">🧾 Đơn hàng của tôi</a>
+
+                        {{#if (eq user.role "admin")}}
+                            <a href="/admin">🛠️ Trang quản trị</a>
+                        {{/if}}
+
+                        <form action="/auth/logout" method="post">
+                            <button type="submit" class="account-dropdown-logout">
+                                ⏻ Đăng xuất
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {{else}}
+                <a class="login-link" href="/auth/login">Đăng nhập</a>
+            {{/if}}
+
+            <a class="btn btn-orange" href="/services">
+                Đặt lịch ngay
+            </a>
+        </div>
+    </div>
+</header>

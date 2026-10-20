@@ -1,0 +1,152 @@
+<section class="section admin-page">
+    <div class="container narrow-admin">
+        <div class="admin-detail-top">
+            <div>
+                <h1>Chi tiết đơn hàng</h1>
+            </div>
+
+            <div class="admin-detail-top-actions">
+                <a class="btn-outline" href="/admin/orders">
+                    ← Danh sách đơn
+                </a>
+
+                <form
+                    method="post"
+                    action="/admin/orders/{{order.id}}?_method=DELETE"
+                    onsubmit="return confirm('Xóa vĩnh viễn đơn hàng #{{order.id}} của {{order.customer_name}}?');"
+                >
+                    <button type="submit" class="btn-delete-order">
+                        🗑️ Xóa đơn hàng
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="admin-order-detail">
+            <!-- Khách hàng -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Thông tin khách hàng</h2>
+                </div>
+
+                <div class="info-grid">
+                    <div>
+                        <small>Họ tên</small>
+                        <strong>{{order.customer_name}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Email</small>
+                        <strong>{{order.customer_email}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Số điện thoại</small>
+                        <strong>{{order.phone}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Ngày chuyển</small>
+                        <strong>{{formatDate order.move_date}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Địa chỉ -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Thông tin vận chuyển</h2>
+                </div>
+
+                <div class="route-admin">
+                    <div>
+                        <small>ĐIỂM ĐI</small>
+                        <p>{{order.from_address}}</p>
+                    </div>
+
+                    <div class="route-arrow">→</div>
+
+                    <div>
+                        <small>ĐIỂM ĐẾN</small>
+                        <p>{{order.to_address}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dịch vụ -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Dịch vụ đã đặt</h2>
+                </div>
+
+                <div class="admin-items">
+                    {{#each order.items}}
+                        <div class="admin-item">
+                            <div>
+                                <strong>{{name}}</strong>
+                                <span>Số lượng: {{quantity}}</span>
+                            </div>
+
+                            <b>{{currency price}}</b>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div class="admin-total">
+                    <span>Tổng tiền</span>
+                    <strong>{{currency order.total}}</strong>
+                </div>
+            </div>
+
+            <!-- Ghi chú -->
+            {{#if order.note}}
+                <div class="detail-block">
+                    <div class="detail-block-title">
+                        <h2>Ghi chú của khách</h2>
+                    </div>
+
+                    <p class="admin-note">{{order.note}}</p>
+                </div>
+            {{/if}}
+
+            <!-- Trạng thái -->
+            <div class="detail-block status-block">
+                <div class="detail-block-title">
+                    <div>
+                        <h2>Trạng thái đơn hàng</h2>
+                        <p>Cập nhật trạng thái để khách hàng biết tiến độ.</p>
+                    </div>
+
+                    <span class="status status-{{order.status}}">
+                        {{order.status}}
+                    </span>
+                </div>
+
+                <form
+                    class="status-form"
+                    method="post"
+                    action="/admin/orders/{{order.id}}/status?_method=PUT"
+                >
+                    <select name="status">
+                        <option value="pending" {{#if (eq order.status 'pending')}}selected{{/if}}>
+                            Chờ xác nhận
+                        </option>
+                        <option value="confirmed" {{#if (eq order.status 'confirmed')}}selected{{/if}}>
+                            Đã xác nhận
+                        </option>
+                        <option value="completed" {{#if (eq order.status 'completed')}}selected{{/if}}>
+                            Hoàn thành
+                        </option>
+                        <option value="cancelled" {{#if (eq order.status 'cancelled')}}selected{{/if}}>
+                            Đã hủy
+                        </option>
+                    </select>
+
+                    <button class="btn btn-orange" type="submit">
+                        Cập nhật trạng thái
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

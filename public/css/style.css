@@ -1,0 +1,1648 @@
+
+/* =========================================================
+   1. CÀI ĐẶT CHUNG
+   ========================================================= */
+
+:root {
+    --blue: #073b78;
+    --blue-light: #0b65bd;
+    --orange: #ff6a00;
+    --bg-light: #f4f8fc;
+    --text: #18385f;
+    --muted: #71859b;
+    --border: #e5edf6;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text);
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+.narrow {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.orange {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   2. BUTTON
+   ========================================================= */
+
+.btn {
+    display: inline-block;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: 9px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-orange {
+    color: #fff;
+    background: var(--orange);
+}
+
+.btn-orange:hover {
+    background: #e85f00;
+}
+
+.btn-outline {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 11px 17px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    color: #25364a;
+    background: #fff;
+    font-weight: 700;
+}
+
+.btn-outline:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+}
+.btn-feature{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* =========================================================
+   3. HEADER / NAVBAR
+   ========================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 74px;
+    background: #fff;
+    box-shadow: 0 2px 12px #00000010;
+}
+
+.nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.brand b {
+    font-size: 22px;
+    color: var(--blue);
+}
+
+.brand b span {
+    color: var(--orange);
+}
+
+.brand small {
+    display: block;
+    color: #6d86a3;
+    font-size: 10px;
+}
+
+.logo {
+    font-size: 28px;
+}
+
+.nav nav {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 25px;
+}
+
+.nav nav a {
+    font-weight: 600;
+}
+
+.nav nav a:hover {
+    color: var(--orange);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 13px;
+}
+
+
+/* ---- Menu tài khoản (hover khi đã đăng nhập) ---- */
+
+.account-menu {
+    position: relative;
+}
+
+.account-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px 7px 8px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.account-trigger:hover,
+.account-menu:hover .account-trigger,
+.account-menu:focus-within .account-trigger {
+    background: var(--bg-light);
+    border-color: var(--border);
+}
+
+.account-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--blue-light);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.caret {
+    font-size: 10px;
+    color: var(--muted);
+    transition: transform .18s ease;
+}
+
+.account-menu:hover .caret,
+.account-menu:focus-within .caret {
+    transform: rotate(180deg);
+}
+
+.account-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    min-width: 230px;
+    margin-top: 10px;
+    padding: 8px 0;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 14px 34px #0b366510;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    z-index: 200;
+}
+
+.account-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+.account-menu:hover .account-dropdown,
+.account-menu:focus-within .account-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.account-dropdown-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 2px 16px 10px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-dropdown-head strong {
+    font-size: 14px;
+    color: var(--blue);
+}
+
+.account-dropdown-head small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.account-dropdown a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.account-dropdown a:hover {
+    background: var(--bg-light);
+    color: var(--orange);
+}
+
+.account-dropdown form {
+    margin: 6px 0 0;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+}
+
+.account-dropdown-logout {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    border: 0;
+    background: none;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d9483a;
+    cursor: pointer;
+}
+
+.account-dropdown-logout:hover {
+    background: #fdecea;
+    color: #c0392b;
+}
+
+
+/* =========================================================
+   4. TRANG CHỦ - HERO
+   ========================================================= */
+
+.hero {
+    background: linear-gradient(100deg, #eef7ff, #dceeff);
+}
+
+.hero-grid {
+    min-height: 425px;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    align-items: center;
+}
+
+.hero-copy {
+    padding: 45px 0;
+}
+
+.pill {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 30px;
+    background: #fff;
+    color: var(--blue-light);
+    font-size: 13px;
+}
+
+h1 {
+    color: var(--blue);
+    font-size: 48px;
+    line-height: 1.1;
+    margin: 18px 0;
+}
+
+.hero h1 em {
+    color: var(--orange);
+    font-style: normal;
+}
+
+.hero-copy > p {
+    max-width: 600px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.booking {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 24px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 30px #15569a18;
+}
+
+.booking div {
+    flex: 1;
+    padding: 6px 12px;
+    border-right: 1px solid #ddd;
+}
+
+.booking small,
+.booking strong {
+    display: block;
+}
+
+.booking small {
+    color: #7790aa;
+}
+
+.ticks {
+    display: flex;
+    gap: 20px;
+    margin-top: 17px;
+    font-size: 13px;
+}
+
+.hero-image {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-size: 120px;
+    margin-left: 10px;
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: 90%;
+    border-radius: 10px;
+}
+
+.truck {
+    font-size: 180px;
+}
+
+.people {
+    font-size: 55px;
+}
+
+
+/* =========================================================
+   5. BENEFITS
+   ========================================================= */
+
+.benefits {
+    padding: 25px 0;
+    background: #f6fbff;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.benefit-grid div {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    column-gap: 7px;
+    font-size: 25px;
+}
+
+.benefit-grid b,
+.benefit-grid small {
+    font-size: 13px;
+}
+
+.benefit-grid small {
+    color: #70859d;
+    width: 100px;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   6. SECTION CHUNG
+   ========================================================= */
+
+.section {
+    padding: 70px 0;
+}
+
+.section-head {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.section-head > span {
+    color: var(--orange);
+}
+
+.section-head h2 {
+    margin: 8px 0;
+    font-size: 32px;
+}
+
+.section-head p {
+    margin: 0;
+    color: #789;
+}
+
+
+/* =========================================================
+   7. QUY TRÌNH
+   ========================================================= */
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.steps > div,
+.card,
+.order {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 20px #0b4a8b0d;
+}
+
+.steps i {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--orange);
+    font-style: normal;
+    font-weight: bold;
+}
+
+.steps h3 {
+    font-size: 16px;
+}
+
+.steps p,
+.card p {
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   8. GIỚI THIỆU
+   ========================================================= */
+
+.about {
+    padding: 65px 0;
+    background: #eef7ff;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.boxes {
+    padding: 55px;
+    border-radius: 20px;
+    background: #fff;
+    text-align: center;
+    font-size: 75px;
+}
+
+.about h2 {
+    font-size: 32px;
+}
+
+.about li {
+    margin: 13px 0;
+    list-style: none;
+}
+
+
+/* =========================================================
+   9. DỊCH VỤ NỔI BẬT
+   ========================================================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.card-img {
+    height: 170px;
+    display: grid;
+    place-items: center;
+    background: #eaf5ff;
+    font-size: 65px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body strong {
+    display: block;
+    margin: 10px 0;
+    color: var(--orange);
+    font-size: 18px;
+}
+
+.card-body a {
+    color: var(--blue-light);
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   10. PAGE TITLE
+   ========================================================= */
+
+.page-title {
+    padding: 60px 0;
+    background: #edf6ff;
+}
+
+.page-title.compact {
+    padding: 56px 0 42px;
+}
+
+.page-title h1 {
+    margin: 8px 0;
+    font-size: 40px;
+}
+
+
+/* =========================================================
+   11. TRANG DỊCH VỤ
+   ========================================================= */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.service-card,
+.detail-card,
+.cart-item,
+.summary,
+.booking-form,
+.order-card {
+    border: 1px solid #e8edf3;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(30, 50, 80, 0.06);
+}
+
+.service-card {
+    display: flex;
+    min-height: 250px;
+    overflow: hidden;
+}
+
+.service-media {
+    width: 180px;
+    min-width: 180px;
+    background: #eef7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.service-media img,
+.detail-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-content {
+    flex: 1;
+    padding: 26px;
+}
+
+.service-content h3 {
+    margin: 8px 0 10px;
+    font-size: 23px;
+}
+
+.service-content p {
+    min-height: 66px;
+    color: #667085;
+    line-height: 1.6;
+}
+
+.tag {
+    color: #f47b20;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.service-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+}
+
+.service-bottom strong,
+.detail-price {
+    color: #f47b20;
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   12. CHI TIẾT DỊCH VỤ
+   ========================================================= */
+
+.detail-section {
+    padding-top: 70px;
+}
+
+.detail-card {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    overflow: hidden;
+}
+
+.detail-visual {
+    min-height: 500px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #eaf6ff, #f8fbff);
+    text-align: center;
+}
+
+.detail-visual div {
+    font-size: 120px;
+}
+
+.detail-visual small {
+    color: #718096;
+    font-weight: 800;
+}
+
+.detail-info {
+    padding: 55px;
+}
+
+.detail-info h1 {
+    margin: 12px 0;
+    font-size: 40px;
+}
+
+.detail-info p {
+    color: #667085;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.detail-price {
+    margin: 25px 0;
+    font-weight: 900;
+}
+
+.check-list {
+    padding: 0;
+    color: #475467;
+    line-height: 2.2;
+    list-style: none;
+}
+
+.check-list li::before {
+    margin-right: 10px;
+    color: #22a06b;
+    content: "✓";
+    font-weight: 900;
+}
+
+.detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   13. GIỎ HÀNG
+   ========================================================= */
+
+.cart-layout,
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 28px;
+    align-items: start;
+}
+
+.cart-list {
+    display: grid;
+    gap: 12px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 20px;
+}
+
+.cart-icon {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: #eef7ff;
+    font-size: 27px;
+}
+
+.cart-main {
+    flex: 1;
+}
+
+.cart-main h3 {
+    margin: 0 0 5px;
+}
+
+.cart-main span {
+    color: #667085;
+    font-size: 14px;
+}
+
+.qty {
+    display: flex;
+    gap: 6px;
+}
+
+.qty input {
+    width: 60px;
+    padding: 9px;
+    border: 0px solid #d9e2ec;
+    border-radius: 8px;
+}
+
+.qty button {
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: #edf2f7;
+    cursor: pointer;
+}
+
+.cart-subtotal {
+    min-width: 110px;
+    text-align: right;
+    font-weight: 800;
+}
+
+.remove {
+    border: 0;
+    background: none;
+    color: #98a2b3;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 5px;
+}
+
+.cart-actions a {
+    color: #f47b20;
+}
+
+.text-btn {
+    border: 0;
+    background: none;
+    color: #e05252;
+    cursor: pointer;
+}
+
+.summary {
+    padding: 25px;
+}
+
+.summary h2 {
+    margin-top: 0;
+}
+
+.summary > div,
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.summary .total {
+    padding: 20px 0;
+    border-bottom: 0;
+}
+
+.summary .total strong {
+    color: #f47b20;
+    font-size: 21px;
+}
+
+.summary small {
+    display: block;
+    color: #8a94a6;
+    line-height: 1.5;
+}
+
+.full {
+    width: 100%;
+    text-align: center;
+}
+
+.empty {
+    padding: 65px 20px;
+    border: 1px dashed #ccd6e2;
+    border-radius: 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.empty > div {
+    font-size: 50px;
+}
+
+.empty p {
+    color: #667085;
+}
+
+
+/* =========================================================
+   14. ĐẶT LỊCH
+   ========================================================= */
+
+.booking-form {
+    padding: 30px;
+}
+
+.booking-form h2 {
+    margin-top: 0;
+}
+
+.booking-form label {
+    display: block;
+    margin: 16px 0;
+    font-weight: 700;
+}
+
+.booking-form label span {
+    color: #e05252;
+}
+
+.booking-form input,
+.booking-form textarea,
+.form input,
+.form textarea,
+.form select,
+.auth input {
+    width: 100%;
+    margin-top: 7px;
+    padding: 12px 13px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    font: inherit;
+}
+
+.booking-form textarea,
+.form textarea {
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.alert,
+.error {
+    color: #c0392b;
+}
+
+.alert {
+    margin-bottom: 18px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: #fff1f0;
+}
+
+
+/* =========================================================
+   15. ĐƠN HÀNG USER
+   ========================================================= */
+
+.orders-list {
+    display: grid;
+    gap: 18px;
+}
+
+.order-card {
+    padding: 25px;
+}
+
+.order-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-head b {
+    font-size: 19px;
+}
+
+.order-head span {
+    margin-left: 12px;
+    color: #8a94a6;
+}
+
+.order-head em,
+.status {
+    padding: 7px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-style: normal;
+}
+
+.order-head em {
+    color: #a45b00;
+    background: #fff3df;
+}
+
+.route {
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr;
+    gap: 10px;
+    align-items: center;
+    margin: 20px 0;
+    padding: 18px;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.route small {
+    color: #8a94a6;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.route p {
+    margin: 7px 0 0;
+    line-height: 1.5;
+}
+
+.arrow {
+    color: #f47b20;
+    text-align: center;
+    font-size: 25px;
+}
+
+.order-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-items span {
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: #f2f4f7;
+    font-size: 13px;
+}
+
+.order-foot {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #edf0f4;
+}
+
+.order-foot strong {
+    color: #f47b20;
+}
+
+.order-cancel-form {
+    margin-top: 14px;
+    text-align: right;
+}
+
+.btn-cancel-order {
+    border: 1px solid #f3c9c9;
+    background: #fff5f5;
+    color: #d33;
+    border-radius: 9px;
+    padding: 9px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn-cancel-order:hover {
+    background: #d33;
+    color: #fff;
+    border-color: #d33;
+}
+
+
+/* =========================================================
+   16. ĐĂNG NHẬP / ĐĂNG KÝ
+   ========================================================= */
+
+.auth {
+    min-height: 65vh;
+    display: grid;
+    place-items: center;
+    background: #f3f8fc;
+}
+
+.auth form {
+    display: grid;
+    gap: 14px;
+    width: min(420px, 90%);
+    padding: 35px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 10px 35px #0001;
+}
+
+
+/* =========================================================
+   17. ADMIN
+   ========================================================= */
+
+.admin-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-head-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-subtitle {
+    color: var(--muted);
+}
+
+.admin-table {
+    margin-top: 25px;
+}
+
+.admin-row {
+    display: grid;
+    grid-template-columns: 1.2fr 0.6fr 2fr auto auto;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.admin-row button {
+    border: 0;
+    background: none;
+    color: #d33;
+    cursor: pointer;
+}
+
+.admin-orders-table {
+    display: grid;
+    gap: 12px;
+}
+
+.admin-order-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr 0.8fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 5px 18px #0b4a8b0b;
+}
+
+.admin-order-row div {
+    display: grid;
+    gap: 4px;
+}
+
+.admin-order-row small {
+    color: #8a94a6;
+}
+
+.admin-order-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
+}
+
+.admin-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.admin-search input {
+    flex: 1;
+    max-width: 340px;
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.admin-search input:focus {
+    outline: none;
+    border-color: var(--orange);
+}
+
+.admin-search-clear {
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: underline;
+}
+
+.btn-delete-order {
+    border: 1px solid #f3c9c9;
+    background: #fff5f5;
+    color: #d33;
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-delete-order:hover {
+    background: #d33;
+    color: #fff;
+    border-color: #d33;
+}
+
+.status {
+    display: inline-block;
+    color: #475467;
+    background: #f2f4f7;
+    text-align: center;
+}
+
+.status-pending {
+    color: #a45b00;
+    background: #fff3df;
+}
+
+.status-confirmed {
+    color: #075e3c;
+    background: #e7f8ef;
+}
+
+.status-completed {
+    color: #175cd3;
+    background: #eaf2ff;
+}
+
+.status-cancelled {
+    color: #b42318;
+    background: #feeceb;
+}
+
+.narrow-admin {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.admin-detail-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.admin-detail-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-order-detail {
+    display: grid;
+    gap: 18px;
+}
+
+.detail-block {
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 6px 20px #0b4a8b0d;
+}
+
+.detail-block-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.detail-block-title h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.detail-block-title p {
+    margin-bottom: 0;
+    color: var(--muted);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.info-grid div {
+    display: grid;
+    gap: 5px;
+}
+
+.info-grid small,
+.route-admin small {
+    color: #8a94a6;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.route-admin {
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr;
+    gap: 15px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 14px;
+    background: #f8fafc;
+}
+
+.route-admin p {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.route-arrow {
+    color: var(--orange);
+    text-align: center;
+    font-size: 28px;
+}
+
+.admin-items {
+    display: grid;
+    gap: 10px;
+}
+
+.admin-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.admin-item div {
+    display: grid;
+    gap: 4px;
+}
+
+.admin-item span {
+    color: #8a94a6;
+    font-size: 13px;
+}
+
+.admin-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 18px;
+}
+
+.admin-total strong {
+    color: var(--orange);
+}
+
+.admin-note {
+    margin: 0;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8fafc;
+    line-height: 1.6;
+}
+
+.status-form {
+    display: flex;
+    gap: 12px;
+}
+
+.status-form select {
+    flex: 1;
+    padding: 11px 12px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    background: #fff;
+}
+
+
+/* =========================================================
+   18. FOOTER
+   ========================================================= */
+
+footer {
+    padding-top: 45px;
+    color: #dbe8f6;
+    background: #082e5d;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 35px;
+}
+
+.footer-grid .brand b {
+    color: #dbe8f6;
+}
+
+.footer-grid a {
+    display: block;
+    margin: 10px 0;
+}
+
+.footer-grid a:hover {
+    color: var(--orange);
+}
+
+.copyright {
+    padding: 18px;
+    border-top: 1px solid #ffffff22;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   19. RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .nav nav,
+    .nav-right > span {
+        display: none;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .detail {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image {
+        min-height: 280px;
+    }
+
+    .benefit-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .steps,
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .booking {
+        flex-wrap: wrap;
+    }
+
+    .booking div {
+        min-width: 40%;
+    }
+
+    .admin-order-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   20. RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .benefit-grid,
+    .steps,
+    .cards,
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav {
+        gap: 8px;
+    }
+
+    .brand {
+        min-width: 0;
+    }
+
+    .brand small {
+        display: none;
+    }
+
+    .brand b {
+        font-size: 17px;
+    }
+
+    .nav-right {
+        gap: 8px;
+        margin-left: auto;
+    }
+
+    .nav-right > span {
+        display: none;
+    }
+
+    .nav-right .cart-link,
+    .nav-right .login-link {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+    .nav-right .cart-link {
+        display: none;
+    }
+
+    .nav-right .btn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .account-name,
+    .caret {
+        display: none;
+    }
+
+    .account-trigger {
+        padding: 6px 8px;
+    }
+
+    .hero-copy {
+        padding: 30px 0;
+    }
+
+    .ticks {
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-row,
+    .admin-order-row,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-layout,
+    .booking-layout,
+    .detail-card {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        display: block;
+    }
+
+    .service-icon {
+        width: 100%;
+        height: 130px;
+    }
+
+    .detail-visual {
+        min-height: 260px;
+    }
+
+    .detail-info {
+        padding: 30px;
+    }
+
+    .detail-info h1 {
+        font-size: 30px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-main {
+        min-width: 180px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .route,
+    .route-admin {
+        grid-template-columns: 1fr;
+    }
+
+    .arrow,
+    .route-arrow {
+        transform: rotate(90deg);
+    }
+
+    .status-form {
+        flex-direction: column;
+    }
+
+    .admin-detail-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+}

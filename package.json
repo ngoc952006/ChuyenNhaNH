@@ -1,0 +1,18 @@
+{
+  "name": "chuyen-nha-NH",
+  "version": "1.0.0",
+  "description": "Website dịch vụ chuyển nhà - Node.js Express Handlebars MySQL MVC",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {"start":"node app.js","dev":"nodemon app.js"},
+  "dependencies": {
+    "bcryptjs":"^3.0.2",
+    "dotenv":"^16.6.1",
+    "express":"^5.1.0",
+    "express-handlebars":"^8.0.3",
+    "express-session":"^1.18.2",
+    "method-override":"^3.0.0",
+    "mysql2":"^3.14.4"
+  },
+  "devDependencies":{"nodemon":"^3.1.10"}
+}

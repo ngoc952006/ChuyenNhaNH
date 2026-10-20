@@ -1,0 +1,118 @@
+<section class="section admin-page">
+    <div class="container narrow-admin">
+        <div class="admin-detail-top">
+            <div>
+                <h1>Chi tiết đơn hàng</h1>
+            </div>
+
+            <div class="admin-detail-top-actions">
+                <a class="btn-outline" href="/orders">
+                    ← Danh sách đơn
+                </a>
+
+            </div>
+        </div>
+
+        <div class="admin-order-detail">
+            <!-- Khách hàng -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Thông tin khách hàng</h2>
+                </div>
+
+                <div class="info-grid">
+                    <div>
+                        <small>Họ tên</small>
+                        <strong>{{order.customer_name}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Email</small>
+                        <strong>{{order.customer_email}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Số điện thoại</small>
+                        <strong>{{order.phone}}</strong>
+                    </div>
+
+                    <div>
+                        <small>Ngày chuyển</small>
+                        <strong>{{formatDate order.move_date}}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Địa chỉ -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Thông tin vận chuyển</h2>
+                </div>
+
+                <div class="route-admin">
+                    <div>
+                        <small>ĐIỂM ĐI</small>
+                        <p>{{order.from_address}}</p>
+                    </div>
+
+                    <div class="route-arrow">→</div>
+
+                    <div>
+                        <small>ĐIỂM ĐẾN</small>
+                        <p>{{order.to_address}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dịch vụ -->
+            <div class="detail-block">
+                <div class="detail-block-title">
+                    <h2>Dịch vụ đã đặt</h2>
+                </div>
+
+                <div class="admin-items">
+                    {{#each order.items}}
+                        <div class="admin-item">
+                            <div>
+                                <strong>{{name}}</strong>
+                                <span>Số lượng: {{quantity}}</span>
+                            </div>
+
+                            <b>{{currency price}}</b>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div class="admin-total">
+                    <span>Tổng tiền</span>
+                    <strong>{{currency order.total}}</strong>
+                </div>
+            </div>
+
+            <!-- Ghi chú -->
+            {{#if order.note}}
+                <div class="detail-block">
+                    <div class="detail-block-title">
+                        <h2>Ghi chú của khách</h2>
+                    </div>
+
+                    <p class="admin-note">{{order.note}}</p>
+                </div>
+            {{/if}}
+
+            <!-- Trạng thái -->
+            <div class="detail-block status-block">
+                <div class="detail-block-title">
+                    <div>
+                        <h2>Trạng thái đơn hàng</h2>
+                        <p>Trạng thái hiện tại của đơn hàng.</p>
+                    </div>
+
+                    <span class="status status-{{order.status}}">
+                        {{order.status}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

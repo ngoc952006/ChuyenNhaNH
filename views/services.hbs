@@ -1,0 +1,36 @@
+<section class="page-title">
+    <div class="container">
+        <span>DỊCH VỤ</span>
+        <h1>Dịch vụ chuyển nhà chuyên nghiệp</h1>
+        <p>Chọn dịch vụ phù hợp, xem chi tiết và thêm vào giỏ để đặt lịch.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container service-grid">
+        {{#each services}}
+            <article class="service-card">
+                <div class="service-media">
+                    {{#if image}}
+                        <img src="{{image}}" alt="{{name}}" />
+                    {{else}}
+                        <img src="/images/service-placeholder.svg" alt="{{name}}" />
+                    {{/if}}
+                </div>
+
+                <div class="service-content">
+                    <span class="tag">CHUYỂN NHÀ NH</span>
+                    <h3>{{name}}</h3>
+                    <p>{{description}}</p>
+
+                    <div class="service-bottom">
+                        <strong>{{currency price}}</strong>
+                        <a class="btn btn-outline" href="/services/{{id}}">Xem chi tiết</a>
+                    </div>
+                </div>
+            </article>
+        {{else}}
+            <p>Chưa có dịch vụ.</p>
+        {{/each}}
+    </div>
+</section>

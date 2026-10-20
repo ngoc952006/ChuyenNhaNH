@@ -1,0 +1,17 @@
+<section class="auth">
+    <form method="post">
+        <h1>Tạo tài khoản</h1>
+
+        {{#if error}}
+            <p class="error">{{error}}</p>
+        {{/if}}
+
+        <input name="name" placeholder="Họ tên" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Mật khẩu" required>
+
+        <button class="btn btn-orange">Đăng ký</button>
+
+        <p>Đã có tài khoản? <a href="/auth/login">Đăng nhập</a></p>
+    </form>
+</section>

@@ -1,0 +1,70 @@
+<section class="page-title compact">
+    <div class="container">
+        <span>GIỎ DỊCH VỤ</span>
+        <h1>Dịch vụ bạn đã chọn</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container cart-layout">
+
+        <div class="cart-list">
+            {{#if items.length}}
+                {{#each items}}
+                    <div class="cart-item">
+                        <div class="cart-icon">🚚</div>
+
+                        <div class="cart-main">
+                            <h3>{{name}}</h3>
+                            <span>{{currency price}} / gói</span>
+                        </div>
+
+                        <div class="qty">
+                            <p>Số gói: {{quantity}}</p>
+                        </div>
+
+                        <div class="cart-subtotal">{{currency (multiply price quantity)}}</div>
+
+                        <form method="post" action="/cart/remove/{{id}}">
+                            <button class="remove" type="submit" onclick="return confirm('Bạn có chắc muốn xóa đơn hàng {{name}} không?')">✕</button>
+                        </form>
+                    </div>
+                {{/each}}
+
+                <div class="cart-actions">
+                    <form method="post" action="/cart/clear">
+                        <button class="text-btn" onclick="return confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng không?')">Xóa giỏ hàng</button>
+                    </form>
+
+                    <a href="/services">← Tiếp tục chọn dịch vụ</a>
+                </div>
+            {{else}}
+                <div class="empty">
+                    <div>🛒</div>
+                    <h2>Giỏ hàng đang trống</h2>
+                    <p>Hãy chọn một dịch vụ để bắt đầu đặt lịch.</p>
+                    <a class="btn btn-orange" href="/services">Xem dịch vụ</a>
+                </div>
+            {{/if}}
+        </div>
+
+        {{#if items.length}}
+            <aside class="summary">
+                <h2>Tóm tắt</h2>
+
+                <div>
+                    <span>Số dịch vụ</span>
+                    <b>{{cartCount}}</b>
+                </div>
+
+                <div class="total">
+                    <span>Tạm tính</span>
+                    <strong>{{currency total}}</strong>
+                </div>
+
+                <a class="btn btn-orange full" href="/orders/booking">Đặt lịch chuyển nhà →</a>
+            </aside>
+        {{/if}}
+
+    </div>
+</section>

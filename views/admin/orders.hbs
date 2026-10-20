@@ -1,0 +1,95 @@
+<section class="section admin-page">
+    <div class="container">
+        <div class="admin-head">
+            <div>
+                <span class="orange">ADMIN / ORDERS</span>
+                <h1>Quản lý đơn hàng</h1>
+                <p class="admin-subtitle">
+                    Xem thông tin và cập nhật trạng thái đơn hàng.
+                </p>
+            </div>
+
+            <div class="admin-head-actions">
+                <a class="btn-outline" href="/admin">
+                    🛠️ Quản lý dịch vụ
+                </a>
+            </div>
+        </div>
+
+        <form class="admin-search" method="get" action="/admin/orders">
+            <input
+                type="text"
+                name="search"
+                placeholder="Tìm theo tên khách hàng đã đăng ký..."
+                value="{{search}}"
+            >
+            <button type="submit" class="btn-outline">🔍 Tìm</button>
+
+            {{#if search}}
+                <a class="admin-search-clear" href="/admin/orders">✕ Xóa lọc</a>
+            {{/if}}
+        </form>
+
+        <div class="admin-table admin-orders-table">
+            {{#if orders}}
+                {{#each orders}}
+                    <div class="admin-order-row">
+                        <div>
+                            <strong>#{{id}}</strong>
+                            <span>{{customer_name}}</span>
+                            <small>{{customer_email}}</small>
+                        </div>
+
+                        <div>
+                            <small>Ngày chuyển</small>
+                            <b>{{formatDate this.move_date}}</b>
+                        </div>
+
+                        <div>
+                            <small>Điện thoại</small>
+                            <b>{{phone}}</b>
+                        </div>
+
+                        <div>
+                            <small>Tổng tiền</small>
+                            <b class="orange">{{currency total}}</b>
+                        </div>
+
+                        <div>
+                            <span class="status status-{{status}}">
+                                {{status}}
+                            </span>
+                        </div>
+
+                        <div class="admin-order-actions">
+                            <a class="btn-outline" href="/admin/orders/{{id}}">
+                                Chi tiết
+                            </a>
+
+                            <form
+                                method="post"
+                                action="/admin/orders/{{id}}?_method=DELETE"
+                                onsubmit="return confirm('Xóa vĩnh viễn đơn hàng #{{id}} của {{customer_name}}?');"
+                            >
+                                <button type="submit" class="btn-delete-order" title="Xóa đơn hàng">
+                                    🗑️
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {{/each}}
+            {{else}}
+                <div class="empty">
+                    <div>📦</div>
+                    {{#if search}}
+                        <h3>Không tìm thấy đơn hàng nào</h3>
+                        <p>Không có khách hàng nào tên "{{search}}" có đơn hàng.</p>
+                    {{else}}
+                        <h3>Chưa có đơn hàng</h3>
+                        <p>Hiện tại chưa có khách hàng đặt lịch.</p>
+                    {{/if}}
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,68 @@
+<section class="page-title compact">
+    <div class="container">
+        <span>ĐẶT LỊCH</span>
+        <h1>Thông tin chuyến chuyển nhà</h1>
+        <p>Điền thông tin để đội ngũ ChuyểnNhàNH liên hệ xác nhận.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container booking-layout">
+
+        <form class="booking-form" method="post" action="/orders">
+            {{#if error}}
+                <div class="alert">{{error}}</div>
+            {{/if}}
+
+            <h2>📍 Thông tin di chuyển</h2>
+
+            <label>
+                Địa chỉ lấy đồ <span>*</span>
+                <textarea name="fromAddress" required placeholder="Số nhà, đường, phường/xã, quận/huyện..."></textarea>
+            </label>
+
+            <label>
+                Địa chỉ giao đồ <span>*</span>
+                <textarea name="toAddress" required placeholder="Số nhà, đường, phường/xã, quận/huyện..."></textarea>
+            </label>
+
+            <div class="form-row">
+                <label>
+                    Số điện thoại <span>*</span>
+                    <input name="phone" required placeholder="09xx xxx xxx">
+                </label>
+
+                <label>
+                    Ngày chuyển <span>*</span>
+                    <input name="moveDate" type="date" required>
+                </label>
+            </div>
+
+            <label>
+                Ghi chú
+                <textarea name="note" placeholder="Tầng, thang máy, đồ dễ vỡ, yêu cầu đặc biệt..." rows="3"></textarea>
+            </label>
+
+            <button class="btn btn-orange full" type="submit">Xác nhận đặt lịch</button>
+        </form>
+
+        <aside class="summary">
+            <h2>Dịch vụ đã chọn</h2>
+
+            {{#each items}}
+                <div class="booking-item">
+                    <span>{{name}} × {{quantity}}</span>
+                    <b>{{currency (multiply price quantity)}}</b>
+                </div>
+            {{/each}}
+
+            <div class="total">
+                <span>Tổng dự kiến</span>
+                <strong>{{currency total}}</strong>
+            </div>
+
+            <small>Giá trên là giá tham khảo. Nhân viên sẽ xác nhận chi phí thực tế sau khi tiếp nhận thông tin.</small>
+        </aside>
+
+    </div>
+</section>

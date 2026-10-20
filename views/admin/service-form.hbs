@@ -1,0 +1,20 @@
+<section class="section">
+    <div class="container narrow">
+        <h1>{{#if service}}Sửa{{else}}Thêm{{/if}} dịch vụ</h1>
+
+        <form
+            class="form"
+            method="post"
+            action="{{#if service}}/admin/services/{{service.id}}?_method=PUT{{else}}/admin/services{{/if}}"
+        >
+            <input name="name" placeholder="Tên dịch vụ" value="{{service.name}}" required>
+
+            <textarea name="description" placeholder="Mô tả">{{service.description}}</textarea>
+
+            <input name="price" type="number" placeholder="Giá" value="{{service.price}}">
+            <input name="image" placeholder="URL ảnh" value="{{service.image}}">
+
+            <button class="btn btn-orange">Lưu</button>
+        </form>
+    </div>
+</section>

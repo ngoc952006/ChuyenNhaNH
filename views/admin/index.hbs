@@ -1,0 +1,37 @@
+<section class="section">
+    <div class="container">
+
+        <div class="admin-head">
+            <div>
+                <span class="orange">ADMIN</span>
+                <h1>Quản lý dịch vụ</h1>
+            </div>
+
+            <div class="admin-head-actions">
+                <a class="btn-outline" href="/admin/orders">🧾 Quản lý đơn hàng</a>
+                <a class="btn btn-orange" href="/admin/services/new">+ Thêm dịch vụ</a>
+            </div>
+        </div>
+
+        {{#if error}}
+            <div class="alert">{{error}}</div>
+        {{/if}}
+
+        <div class="admin-table">
+            {{#each services}}
+                <div class="admin-row">
+                    <b>{{name}}</b>
+                    <span>{{currency price}}</span>
+                    <span>{{description}}</span>
+
+                    <a href="/admin/services/{{id}}/edit">Sửa</a>
+
+                    <form method="post" action="/admin/services/{{id}}?_method=DELETE">
+                        <button onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</button>
+                    </form>
+                </div>
+            {{/each}}
+        </div>
+
+    </div>
+</section>

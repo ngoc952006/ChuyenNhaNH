@@ -1,0 +1,75 @@
+<section class="page-title compact">
+    <div class="container">
+        <span>TÀI KHOẢN</span>
+        <h1>Đơn hàng của tôi</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container orders-list">
+        {{#each orders}}
+            <article class="order-card">
+                <div class="order-head">
+                    <div>
+                        {{#each items}}
+                            <h3>Tên dịch vụ: {{name}}</h3>
+                        {{/each}}
+                        <span>Ngày làm việc: {{formatDate this.move_date}}</span>
+                    </div>
+                    <em>{{status}}</em>
+                </div>
+
+                <div class="route">
+                    <div>
+                        <small>LẤY ĐỒ</small>
+                        <p>📍 {{from_address}}</p>
+                    </div>
+
+                    <div class="arrow">→</div>
+
+                    <div>
+                        <small>GIAO ĐỒ</small>
+                        <p>📍 {{to_address}}</p>
+                    </div>
+                </div>
+
+                <div class="order-items">
+                    {{#each items}}
+                        <span>{{name}} × {{quantity}}</span>
+                    {{/each}}
+                </div>
+
+                <div class="order-foot">
+                    <span>☎ {{phone}}</span>
+                    <strong>{{currency total}}</strong>
+                </div>
+                <br>
+                <hr style="background-color: rgb(255, 255, 255);">
+                <div class="btn-feature">
+                    <a class="btn-outline" href="/orders/{{id}}">
+                        Chi tiết đơn hàng
+                    </a>
+                    {{#if (eq status "pending")}}
+                        <form
+                            class="order-cancel-form"
+                            method="post"
+                            action="/orders/{{id}}?_method=DELETE"
+                            onsubmit="return confirm('Bạn có chắc muốn hủy dịch vụ {{#each items}}{{name}}{{/each}} không?');"
+                        >
+                            
+                            <button type="submit" class="btn-cancel-order">
+                                ✕ Hủy đơn hàng
+                            </button>
+                        </form>
+                    {{/if}}
+                </div>
+            </article>
+        {{else}}
+            <div class="empty">
+                <h2>Chưa có đơn hàng</h2>
+                <p>Đặt một dịch vụ để đơn hàng xuất hiện ở đây.</p>
+                <a class="btn btn-orange" href="/services">Xem dịch vụ</a>
+            </div>
+        {{/each}}
+    </div>
+</section>
